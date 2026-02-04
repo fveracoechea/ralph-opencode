@@ -19,7 +19,6 @@ Based on [Geoffrey Huntley's Ralph pattern](https://ghuntley.com/ralph/).
 - Git repository with an `AGENTS.md` file
 - [Playwriter](https://github.com/remorses/playwriter) - Browser automation for
   UI verification (optional but recommended)
-- [Bun](https://bun.sh/) - Required to run Playwriter (`bunx playwriter@latest`)
 
 ## Installation
 
