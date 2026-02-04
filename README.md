@@ -1,15 +1,22 @@
 # Ralph Agent Loop for Opencode
 
-Ralph is an autonomous agent loop that runs AI via Opencode repeatedly until all PRD items are complete. Each iteration is a fresh instance with clean context. Memory persists via git history, `progress.txt`, and `prd.json`.
+Ralph is an autonomous agent loop that runs AI via Opencode repeatedly until all
+PRD items are complete. Each iteration is a fresh instance with clean context.
+Memory persists via git history, `progress.txt`, and `prd.json`.
 
-This version is optimized for **Web UI development**. Ralph uses the [Playwriter](https://github.com/remorses/playwriter) skill to control a browser, verify UI changes, take screenshots, and debug frontend issues autonomously.
+This version is optimized for **Web UI development**. Ralph uses the
+[Playwriter](https://github.com/remorses/playwriter) skill to control a browser,
+verify UI changes, take screenshots, and debug frontend issues autonomously.
+
+Based on [Geoffrey Huntley's Ralph pattern](https://ghuntley.com/ralph/).
 
 ## Requirements
 
 - [Opencode](https://opencode.ai/)
 - [jq](https://jqlang.org/)
 - Git repository with an `AGENTS.md` file
-- [Playwriter](https://github.com/remorses/playwriter) - Browser automation for UI verification (optional but recommended)
+- [Playwriter](https://github.com/remorses/playwriter) - Browser automation for
+  UI verification (optional but recommended)
 - [Bun](https://bun.sh/) - Required to run Playwriter (`bunx playwriter@latest`)
 
 ## Installation
@@ -58,63 +65,12 @@ Each iteration Ralph will:
 7. Append learnings to `ralph/progress.txt`
 8. Repeat until complete or max iterations reached
 
-## Useful CLI Commands
-
-```sh
-# Interactive TUI
-opencode                              # Start interactive session
-opencode -m opencode/claude-sonnet-4  # Start with specific model
-opencode -c                           # Continue last session
-
-# Run a single prompt (non-interactive)
-opencode run "your prompt here"
-opencode run -m opencode/kimi-k2.5 "your prompt"
-opencode run -f file.ts "explain this file"
-
-# Models and stats
-opencode models                       # List all available models
-opencode models github-copilot        # List models for a provider
-opencode stats                        # Show token usage and costs
-
-# Session management
-opencode session                      # List sessions
-opencode export <sessionID>           # Export session as JSON
-opencode import <file>                # Import session
-
-# GitHub integration
-opencode pr <number>                  # Checkout PR and start opencode
-```
-
-## Project Structure
-
-```
-your-project/
-├── AGENTS.md              # Required: agent instructions for your codebase
-├── ralph/
-│   ├── ralph.sh           # Main loop script
-│   ├── prompt.md          # Per-iteration instructions
-│   ├── progress.txt       # Append-only progress log
-│   └── prd.json           # Current PRD
-└── .opencode/skills/      # Skill definitions (git, prd, ralph, playwriter)
-```
-
 ## Browser Testing with Playwriter
 
 For UI stories, Ralph uses Playwriter to verify changes in a real browser:
 
-1. Enable Playwriter in `opencode.json`:
-   ```json
-   {
-     "mcp": {
-       "playwriter": {
-         "type": "local",
-         "enabled": true,
-         "command": ["bunx", "playwriter@latest"]
-       }
-     }
-   }
-   ```
+1. Start your dev server (e.g., `npm run dev`)
 
-2. Start your dev server (e.g., `npm run dev`)
-
-3. Ralph will automatically load the playwriter skill for UI stories, navigate to pages, interact with elements, and take screenshots to verify changes work as expected.
+2. Ralph will automatically load the playwriter skill for UI stories, navigate
+   to pages, interact with elements, and take screenshots to verify changes work
+   as expected.
