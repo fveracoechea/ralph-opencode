@@ -1,4 +1,4 @@
-# Ralph Agent Loop for Opencode
+# Ralph agent loop for Opencode
 
 Ralph is an autonomous agent loop that runs AI via Opencode repeatedly until all
 PRD items are complete. Each iteration is a fresh instance with clean context.
