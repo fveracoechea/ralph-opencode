@@ -2,11 +2,15 @@
 
 Ralph is an autonomous agent loop that runs AI via Opencode repeatedly until all PRD items are complete. Each iteration is a fresh instance with clean context. Memory persists via git history, `progress.txt`, and `prd.json`.
 
+This version is optimized for **Web UI development**. Ralph uses the [Playwriter](https://github.com/remorses/playwriter) skill to control a browser, verify UI changes, take screenshots, and debug frontend issues autonomously.
+
 ## Requirements
 
 - [Opencode](https://opencode.ai/)
 - [jq](https://jqlang.org/)
 - Git repository with an `AGENTS.md` file
+- [Playwriter](https://github.com/remorses/playwriter) - Browser automation for UI verification (optional but recommended)
+- [Bun](https://bun.sh/) - Required to run Playwriter (`bunx playwriter@latest`)
 
 ## Installation
 
@@ -93,3 +97,24 @@ your-project/
 │   └── prd.json           # Current PRD
 └── .opencode/skills/      # Skill definitions (git, prd, ralph, playwriter)
 ```
+
+## Browser Testing with Playwriter
+
+For UI stories, Ralph uses Playwriter to verify changes in a real browser:
+
+1. Enable Playwriter in `opencode.json`:
+   ```json
+   {
+     "mcp": {
+       "playwriter": {
+         "type": "local",
+         "enabled": true,
+         "command": ["bunx", "playwriter@latest"]
+       }
+     }
+   }
+   ```
+
+2. Start your dev server (e.g., `npm run dev`)
+
+3. Ralph will automatically load the playwriter skill for UI stories, navigate to pages, interact with elements, and take screenshots to verify changes work as expected.
