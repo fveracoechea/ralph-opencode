@@ -8,6 +8,8 @@ This version is optimized for **Web UI development**. Ralph uses the
 [Playwriter](https://github.com/remorses/playwriter) skill to control a browser,
 verify UI changes, take screenshots, and debug frontend issues autonomously.
 
+![Simpsons character Ralph Wiggum typing on a computer](ralph.avif)
+
 Based on [Geoffrey Huntley's Ralph pattern](https://ghuntley.com/ralph/).
 
 ## Requirements
